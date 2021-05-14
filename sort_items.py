@@ -4,12 +4,28 @@ import random
 
 cwd_path = os.getcwd()
 
+
 def read_row(file_name):
     """
     Reads one row for a CSV file and returns numeric data.
     :param file_name: (str), name of CSV file
     :return: (list, int),
     """
+    #row = []
+    path = os.path.join(cwd_path,file_name)
+    with open(path, 'r', encoding='utf-8') as csv_file:
+        reader = csv.reader(csv_file, delimiter='\t')
+
+        for line in reader:
+            row = [int(number) for number in line]
+
+        #for line in reader:
+        #    for number in line:
+        #        number = int(number)
+        #        row.append(number)
+
+    return row
+
 
 
 def read_rows(file_name, row_number):
@@ -40,7 +56,10 @@ def bubble_sort(number_array):
 def main():
 
     # Ukol: Selection Sort
-
+    name = 'numbers_one.CSV'
+    my_list = read_row(name)
+    print(my_list)
+    sorted_list = selection_sort(read_row(name))
 
     # Ukol: Selection Sort - se smerem razeni
     
