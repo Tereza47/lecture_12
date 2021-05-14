@@ -37,7 +37,7 @@ def read_rows(file_name, row_number):
     """
 
 
-def selection_sort(number_array):
+def selection_sort(number_array, direction):
     """
         Sorts and returns selected numeric data with Selection Sort.
         :param number_array: (list,int), list with numeric array
@@ -46,8 +46,12 @@ def selection_sort(number_array):
     for index, num in enumerate(number_array):
         extreme_idx = index
         for num_idx, number in enumerate(number_array[index:]):
-            if number < number_array[extreme_idx]:
-                extreme_idx = num_idx + index
+            if direction == 'ascending':
+                if number < number_array[extreme_idx]:
+                    extreme_idx = num_idx + index
+            elif direction == 'descending':
+                if number > number_array[extreme_idx]:
+                    extreme_idx = num_idx + index
         number_array[extreme_idx], number_array[index] = number_array[index], number_array[extreme_idx]
 
     return number_array
@@ -67,7 +71,7 @@ def main():
     name = 'numbers_one.CSV'
     my_list = read_row(name)
     print(my_list)
-    sorted_list = selection_sort(read_row(name))
+    sorted_list = selection_sort(read_row(name), 'ascending')
     print(sorted_list)
     # Ukol: Selection Sort - se smerem razeni
     
