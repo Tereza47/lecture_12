@@ -43,6 +43,14 @@ def selection_sort(number_array):
         :param number_array: (list,int), list with numeric array
         :return: (list, int), sorted numeric array
     """
+    for index, num in enumerate(number_array):
+        extreme_idx = index
+        for num_idx, number in enumerate(number_array[index:]):
+            if number < number_array[extreme_idx]:
+                extreme_idx = num_idx + index
+        number_array[extreme_idx], number_array[index] = number_array[index], number_array[extreme_idx]
+
+    return number_array
 
 
 def bubble_sort(number_array):
@@ -60,7 +68,7 @@ def main():
     my_list = read_row(name)
     print(my_list)
     sorted_list = selection_sort(read_row(name))
-
+    print(sorted_list)
     # Ukol: Selection Sort - se smerem razeni
     
 
